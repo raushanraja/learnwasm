@@ -1,0 +1,41 @@
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8"/>
+        <title> Hello WASM Example </title>
+    <script type="module">
+            import init, {greet, sum} from "./pkg/hello_wasm.js";
+            init().then(()=>{
+                console.log("Init Successfull")
+            });
+
+            function add(){
+
+                const left = document.getElementById('left');
+                const right = document.getElementById('right');
+                console.log(left, right)
+                sum(left.value, right.value);
+            }
+
+            const greetButton = document.getElementById('greet');
+            const addButton = document.getElementById('add');
+            greetButton.addEventListener('click', ()=>{
+                const greetText = document.getElementById("greet_text").value;
+                greet(greetText);
+            })
+            
+            addButton.addEventListener('click', add);
+
+    </script>
+    </head>
+    <body>
+        <div> 
+            <input id="greet_text" type="text"/>
+            <button id="greet"> Greet </button>
+        </div> 
+        <div>
+            <input id="left" type="text"/>
+            <input id="right" type="text"/>
+            <button id="add"> Add </button>
+        </div> 
+    </body>
+</html>
